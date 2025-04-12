@@ -7,9 +7,10 @@ services:
       args:
         - DEV=true
     ports:
-      - "8000:8000"
+      - "80:8000"
     volumes:
       - ./app:/app
+      - dev-static-data:/vol/web
     command: >
      
       sh -c "python manage.py wait_for_db &&
@@ -21,6 +22,7 @@ services:
       - DB_NAME=devdb
       - DB_USER=devuser
       - DB_PASS=changeme
+      - DEBUG=1
     depends_on:
       - db
     
@@ -35,4 +37,6 @@ services:
 
 volumes:
   dev-db-data:
+  dev-static-data:
+
 
